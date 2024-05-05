@@ -33,7 +33,7 @@ const Nav = () => {
       <div className="sm:flex hidden">
         {session?.user ? (
           <div className="flex gap-3 md:gap-5s">
-            <Link className="black_btn" href="/craete-prompt">
+            <Link className="black_btn" href="/create-prompt">
               Create Post
             </Link>
 
