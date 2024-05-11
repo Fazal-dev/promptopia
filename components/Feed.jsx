@@ -20,7 +20,12 @@ const Feed = () => {
   const [searchText, setSearchText] = useState("");
   const [posts, setPosts] = useState([]);
 
-  const handleSearchChange = (e) => {};
+  const handleSearchChange = (e) => {
+    // get seach text
+    // filter the post arry according to search text
+    // filter by tag or user name or prompt
+    // update the posts arry
+  };
 
   useEffect(() => {
     const fetchPost = async () => {
