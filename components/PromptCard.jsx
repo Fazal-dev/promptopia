@@ -3,14 +3,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+// import Link from "next/link";
 
 const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const [copied, setCopied] = useState("");
   const { data: session } = useSession();
-
   const pathname = usePathname();
+  const router = useRouter();
   const handleCopy = () => {
     setCopied(post.prompt);
     navigator.clipboard.writeText(post.prompt);
@@ -28,16 +28,17 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             height={40}
             className="rounded-full object-contain"
           />
-          <div className="flex flex-col">
+          <div
+            onClick={() => router.push(`/profile/?id=${post.creator._id}`)}
+            className="flex flex-col"
+          >
             {" "}
-            <Link href="/profile">
-              <h3 className="font-satoshi font-semibold text-green-900">
-                {post.creator.username}
-              </h3>
-              <p className="font-inter text-sm text-gray-500">
-                {post.creator.email}
-              </p>
-            </Link>
+            <h3 className="font-satoshi font-semibold text-green-900">
+              {post.creator.username}
+            </h3>
+            <p className="font-inter text-sm text-gray-500">
+              {post.creator.email}
+            </p>
           </div>
         </div>
         {/* copy btn */}
