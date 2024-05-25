@@ -3,16 +3,18 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const [copied, setCopied] = useState("");
   const { data: session } = useSession();
-  const router = useRouter();
+
   const pathname = usePathname();
   const handleCopy = () => {
     setCopied(post.prompt);
     navigator.clipboard.writeText(post.prompt);
+    alert("copied succefully");
     setTimeout(() => setCopied(""), 3000);
   };
   return (
@@ -28,12 +30,14 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           />
           <div className="flex flex-col">
             {" "}
-            <h3 className="font-satoshi font-semibold text-green-900">
-              {post.creator.username}
-            </h3>
-            <p className="font-inter text-sm text-gray-500">
-              {post.creator.email}
-            </p>
+            <Link href="/profile">
+              <h3 className="font-satoshi font-semibold text-green-900">
+                {post.creator.username}
+              </h3>
+              <p className="font-inter text-sm text-gray-500">
+                {post.creator.email}
+              </p>
+            </Link>
           </div>
         </div>
         {/* copy btn */}

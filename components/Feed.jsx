@@ -37,6 +37,7 @@ const Feed = () => {
   const handleTagClick = (tag) => {
     const filtered = posts.filter((post) => post.tag.includes(tag));
     setFilteredPosts(filtered);
+    setSearchText(tag);
   };
   useEffect(() => {
     const fetchPost = async () => {
