@@ -1,26 +1,30 @@
 "use client";
 
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
-
 import Profile from "@components/Profile";
 
-const OwnProfile = ({ params }) => {
+const OwnProfile = () => {
   const [posts, setPosts] = useState([]);
-  const searchParams = useSearchParams();
-  const userId = searchParams.get("id");
+
+  const { id } = useParams();
 
   useEffect(() => {
+    if (id === null || id === undefined) {
+      console.log("id is null or undefined");
+      return;
+    }
+
+    console.log("Fetched id:", id);
     const fetchPosts = async () => {
-      const response = await fetch(`/api/users/${userId}/posts`);
+      const response = await fetch(`/api/users/${id}/posts`);
       const data = await response.json();
       setPosts(data);
     };
-    if (userId) {
+    if (id) {
       fetchPosts();
     }
-    console.log("test");
-  }, [params?.id]);
+  }, [id]);
 
   return (
     <Profile
