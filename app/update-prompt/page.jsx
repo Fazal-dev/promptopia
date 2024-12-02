@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import Form from "@components/Form";
 
-const EditPrompted = () => {
+const EditPrompt = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const promptId = searchParams.get("id");
@@ -57,14 +57,6 @@ const EditPrompted = () => {
       submitting={submitting}
       handleSubmit={updatePrompt}
     />
-  );
-};
-
-const EditPrompt = () => {
-  return (
-    <Suspense>
-      <EditPrompted />
-    </Suspense>
   );
 };
 
