@@ -43,6 +43,7 @@ const Feed = () => {
     const fetchPost = async () => {
       const response = await fetch("/api/prompt");
       const data = await response.json();
+      console.log(response);
       setPosts(data);
       setFilteredPosts(data);
     };
