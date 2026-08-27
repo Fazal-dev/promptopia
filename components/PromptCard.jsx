@@ -30,7 +30,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             className="rounded-full object-contain"
           />
           <div
-            onClick={() => router.push(`/profile/?id=${post.creator?._id}`)}
+            onClick={() => router.push(`/profile/?id=${post.creator?._id || "675056077fb9a81b4005c462"}`)}
             className="flex flex-col"
           >
             {" "}
@@ -68,7 +68,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
       >
         {post.tag}
       </p>
-      {session?.user.id === post.creator._id && pathname === "/profile" && (
+      {session?.user.id === post.creator?._id && pathname === "/profile" && (
         <div className="pt-3 mt-5 flex-center gap-4 border-t border-gray-100">
           <p
             onClick={() => handleEdit(post)}
