@@ -12,7 +12,6 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const pathname = usePathname();
   const router = useRouter();
 
-  console.log(post);
   const handleCopy = () => {
     setCopied(post.prompt);
     navigator.clipboard.writeText(post.prompt);
@@ -24,22 +23,22 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
       <div className="flex justify-between items-start gap-5">
         <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
           <Image
-            src={post.creator.image}
+            src={post.creator?.image || ""}
             alt="user_image"
             width={40}
             height={40}
             className="rounded-full object-contain"
           />
           <div
-            onClick={() => router.push(`/profile/?id=${post.creator._id}`)}
+            onClick={() => router.push(`/profile/?id=${post.creator?._id}`)}
             className="flex flex-col"
           >
             {" "}
             <h3 className="font-satoshi font-semibold text-green-900">
-              {post.creator.username}
+              {post.creator?.username || "Unknown User"}
             </h3>
             <p className="font-inter text-sm text-gray-500">
-              {post.creator.email}
+              {post.creator?.email || "test@gmail.com"}
             </p>
           </div>
         </div>
